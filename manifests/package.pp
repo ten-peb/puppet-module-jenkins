@@ -14,7 +14,7 @@ class jenkins::package {
     notify  => Exec['refresh aptcache for jenkins']
   }
   exec{'refresh aptcache for jenkins':
-    command      => 'apt-cache update',
+    command      => 'apt-get update',
     path         => '/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin',
     require      => File['/etc/apt/sources.list.d/jenkins.list'],
     refreshonly => true
