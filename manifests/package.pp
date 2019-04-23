@@ -17,7 +17,7 @@ class jenkins::package {
     command      => 'apt-cache update',
     path         => '/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin',
     require      => File['/etc/apt/sources.list.d/jenkins.list'],
-    refresh_only => true
+    refreshonly => true
   }
   package{'jenkins':
     ensure  => latest,
