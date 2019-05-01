@@ -8,10 +8,10 @@ class jenkins::package {
 
   $key_wget='wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key'
   $key_import="${key_wget} | apt-key add -"
-  
+
   exec {'import jenkins key':
     command => $key_import,
-    path => '/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin'
+    path    => '/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin'
   }
   file{'/etc/apt/sources.list.d/jenkins.list':
     ensure  => present,
@@ -23,9 +23,9 @@ class jenkins::package {
     notify  => Exec['refresh aptcache for jenkins']
   }
   exec{'refresh aptcache for jenkins':
-    command      => 'apt-get update',
-    path         => '/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin',
-    require      => File['/etc/apt/sources.list.d/jenkins.list'],
+    command     => 'apt-get update',
+    path        => '/bin:/usr/bin:/sbin:/usr/sbin:/usr/local/bin',
+    require     => File['/etc/apt/sources.list.d/jenkins.list'],
     refreshonly => true
   }
   package{'jenkins':

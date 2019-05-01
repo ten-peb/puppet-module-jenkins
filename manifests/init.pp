@@ -6,5 +6,5 @@
 #   include jenkins
 class jenkins {
   include jenkins::package
-  include jenkins::service 
+  include jenkins::service
 }
